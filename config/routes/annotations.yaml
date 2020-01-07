@@ -1,0 +1,7 @@
+Project:
+  resource: ../../src/Domains/Project/Controller/
+  type: annotation
+
+Account:
+  resource: ../../src/Domains/Account/Controller/
+  type: annotation
