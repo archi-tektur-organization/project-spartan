@@ -3,5 +3,5 @@ twig:
   debug: '%kernel.debug%'
   strict_variables: '%kernel.debug%'
   paths:
-    '%kernel.project_dir%/src/Domains/Account/Resources/templates': 'Account'
-    '%kernel.project_dir%/src/Domains/Project/Resources/templates': 'Project'
+    '%kernel.project_dir%/src/Domains/Account/Resource/templates': 'Account'
+    '%kernel.project_dir%/src/Domains/Project/Resource/templates': 'Project'

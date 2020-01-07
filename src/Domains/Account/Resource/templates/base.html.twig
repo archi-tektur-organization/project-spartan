@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+          crossorigin="anonymous">
+    {{ encore_entry_link_tags('security') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% block window %}{% endblock %}
+        <a href="https://archi-tektur.pl" class="container__copyright">archi_tektur sp. z o.o.</a>
+        {% if app.environment != 'prod' %}
+            <span class="container__application-name">
+                Project Spartan v0.1-alpha {{ app.environment }}
+            </span>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block javascripts %} {{ encore_entry_script_tags('security') }} {% endblock %}
