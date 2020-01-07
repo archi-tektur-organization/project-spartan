@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('dashboard') }}
+{% endblock %}
+
+{% block title %}Dashboard | Project Spartan{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% include '@Project/partials/_panel.html.twig' %}
+        <div class="container__wrapper">
+            {% include '@Project/partials/_nav.html.twig' %}
+            <div class="container__content">
+                <div class="details">
+                    <h2 class="details__title">Nazwa projektu</h2>
+                    <p class="details__description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Assumenda, quam voluptates? Animi autem beatae commodi consequuntur exercitationem, fugiat
+                        itaque iure libero maiores nemo nesciunt numquam odio repellat, vel velit. Facilis? Lorem ipsum
+                        dolor sit amet, consectetur adipisicing elit. Aliquid corporis doloribus enim error est expedita
+                        ipsam magnam nam officia officiis perspiciatis qui, ullam vitae. Eum nam nesciunt numquam
+                        temporibus voluptas.
+                    </p>
+                </div>
+                <div class="container__plugins"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ encore_entry_link_tags('dashboard') }}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends '@Account/base.html.twig' %}
+
+{% block window %}
+    <section class="window">
+        <img class="window__logo" src="{{ asset('build/images/logo.svg') }}" alt="Company logo"/>
+
+        <div class="window__header">
+            <h1 class="window__title">Welcome!</h1>
+            <span class="window__text">Sign in to you account.</span>
+        </div>
+
+        <form action="" class="window__form form form--login">
+            <div class="form_inputs">
+                <label class="form__label" for="login">Login</label>
+                <input class="form__input" id="login" type="text">
+                <label class="form__label" for="password">Password</label>
+                <input class="form__input" id="password" type="password">
+            </div>
+            <nav class="form__links">
+                <a class="form__link" href="">Forgotten password?</a>
+                <a href="" class="form__link">
+                    <span class="fas fa-sign-in-alt fa-fw"></span>
+                    Sign up
+                </a>
+            </nav>
+            <button class="form__submit-button" type="submit">Sign in</button>
+        </form>
+    </section>
+{% endblock %}

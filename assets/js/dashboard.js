@@ -1,0 +1,1 @@
+require('../sass/domains/dashboard/dashboard.sass');

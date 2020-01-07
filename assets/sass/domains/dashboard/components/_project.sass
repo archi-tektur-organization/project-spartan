@@ -1,0 +1,34 @@
+.project
+  background: $color-white
+  display: flex
+  align-items: center
+  padding: 10px
+  justify-content: space-between
+  &--ok
+    border-left: 4px $color-success solid
+  &--archived
+    border-left: 4px $color-dark solid
+  &--warning
+    border-left: 4px $color-warning solid
+  &--error
+    border-left: 4px $color-danger solid
+  &--selected
+    background: darken($color-light-gray, 5)
+  &__text
+    line-height: 0.9
+  &__title
+    font-weight: 500
+    font-size: 0.9em
+  &__detail
+    font-size: 0.6em
+    font-style: italic
+  &__actions
+    font-size: 0.8em
+  &__icon
+    padding: 0 3px
+    &:hover
+      color: $color-primary
+    &--delete
+      color: $color-danger
+      &:hover
+        color: darken($color-danger, 20)
