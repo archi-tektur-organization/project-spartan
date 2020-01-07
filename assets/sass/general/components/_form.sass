@@ -1,0 +1,36 @@
+.form
+  &_row
+    width: 100%
+    display: flex
+    justify-content: center
+    flex-direction: row
+    margin: 0 auto
+    align-items: center
+    &--stretch
+      justify-content: space-between
+    &--minh
+      min-height: 35px
+  &_input
+    outline: none
+    width: 100%
+    margin: 3px
+    display: block
+    border: 1px #ced4da solid
+    border-radius: 3px
+    font-size: 0.8em
+    padding: 6px 10px
+    &:focus
+      border-color: #80bdff
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25)
+  &_submit
+    @extend .form_input
+    background-color: $color-primary
+    border-color: $color-primary
+    width: 100px
+    color: $color-white
+    &:hover
+      background-color: darken($color-primary, 10)
+      border-color: darken($color-primary, 10)
+  &_remember-me
+    color: #565656
+    font-size: 0.7em

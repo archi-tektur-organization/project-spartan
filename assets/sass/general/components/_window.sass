@@ -1,0 +1,23 @@
+.window
+  height: 700px
+  width: 1200px
+  @include shadow(1)
+  background: white
+  display: flex
+  flex-direction: row
+  &--login
+    margin: 5px 0
+    @include shadow(1)
+    padding: 10px 25px
+    width: 300px
+    height: auto
+    flex-direction: column
+    border-radius: 10px
+    border: none
+    .window_title
+      font-size: 1.3em
+      margin: 5px
+  &--error
+    background-color: $color-danger
+    font-size: 0.8em
+    color: $color-white

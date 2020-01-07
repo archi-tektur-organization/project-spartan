@@ -1,0 +1,29 @@
+.choose-list
+  font-family: Helvetica, sans-serif
+  width: 300px
+  min-height: 100%
+  background: darken(#F8F9FA, 10)
+  display: flex
+  flex-direction: column
+  &_element
+    font-size: 0.9em
+    display: flex
+    flex-direction: column
+    width: 100%
+    padding: 10px
+    transition: 0.1s ease-in-out background-color
+    &:hover, &:focus
+      background: darken(#F8F9FA, 5)
+    &--active
+      background: #f8f9fa
+      &:hover, &:focus
+        background: #f8f9fa
+  &_subelement
+    font-size: 0.7em
+    color: $color-secondary
+  &_new
+    padding: 15px
+    margin-top: auto
+    font-size: 0.9em
+    &:hover, &:focus
+      background: darken(#F8F9FA, 5)

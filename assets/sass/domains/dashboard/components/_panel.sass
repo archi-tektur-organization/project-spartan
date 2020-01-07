@@ -1,0 +1,26 @@
+.panel
+  position: relative
+  display: block
+  min-width: 300px
+  z-index: 100
+  background: $color-white
+  &::before
+    content: ''
+    position: absolute
+    z-index: -1
+    left: 0
+    bottom: 0
+    width: 100%
+    height: calc(100% - 70px)
+    @include shadow(1)
+  &__app-informations
+    background: $color-white
+    margin: 30px 0 30px
+  &__logo
+    max-width: 150px
+    display: block
+    margin: 0 auto
+  &__title
+    font-size: 1.3em
+    font-weight: 800
+    text-align: center
