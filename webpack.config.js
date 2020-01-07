@@ -9,6 +9,7 @@ Encore
   .cleanupOutputBeforeBuild()
   .enableBuildNotifications()
   .enableSourceMaps(!Encore.isProduction())
+  .copyFiles({ from: './assets/images', to: 'images/[path][name].[ext]' })
   .enableVersioning(Encore.isProduction())
   .configureBabel(() => {}, {
     useBuiltIns: 'usage',
