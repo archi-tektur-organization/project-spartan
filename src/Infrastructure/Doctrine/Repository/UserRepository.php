@@ -6,6 +6,7 @@ use App\Infrastructure\Doctrine\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\{OptimisticLockException, ORMException};
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\{PasswordUpgraderInterface, UserInterface};
 
@@ -19,26 +20,31 @@ use function get_class;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    private UserPasswordEncoderInterface $passwordEncoder;
+
+    public function __construct(ManagerRegistry $registry, UserPasswordEncoderInterface $passwordEncoder)
     {
         parent::__construct($registry, User::class);
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      *
      * @param UserInterface $user
-     * @param string        $newEncodedPassword
+     * @param string        $plainPassword
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function upgradePassword(UserInterface $user, string $newEncodedPassword): void
+    public function upgradePassword(UserInterface $user, string $plainPassword): void
     {
         if (!$user instanceof User) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', get_class($user)));
         }
 
-        $user->setPassword($newEncodedPassword);
+        $encoded = $this->passwordEncoder->encodePassword($user, $plainPassword);
+
+        $user->setPassword($encoded);
         $this->_em->persist($user);
         $this->_em->flush();
     }

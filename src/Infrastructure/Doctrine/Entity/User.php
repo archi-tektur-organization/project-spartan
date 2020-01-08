@@ -27,11 +27,14 @@ class User implements UserInterface
      */
     private array $roles = [];
 
+    /** @var string|null The unhashed password */
+    private ?string $plainPassword;
+
     /**
-     * @var string The hashed password
+     * @var null|string The hashed password
      * @ORM\Column(type="string")
      */
-    private string $password;
+    private ?string $password;
 
     public function getId(): ?int
     {
@@ -43,7 +46,7 @@ class User implements UserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): User
     {
         $this->email = $email;
 
@@ -62,7 +65,7 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): self
+    public function setRoles(array $roles): User
     {
         $this->roles = $roles;
         return $this;
@@ -73,17 +76,32 @@ class User implements UserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(string $password): User
     {
         $this->password = $password;
         return $this;
     }
 
-    public function getSalt()
+    public function getSalt(): void { }
+
+    public function eraseCredentials(): void
     {
+        $this->plainPassword = null;
+        $this->password = null;
     }
 
-    public function eraseCredentials()
+    public function getPlainPassword(): string
     {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     * @return User
+     */
+    public function setPlainPassword(string $plainPassword): User
+    {
+        $this->plainPassword = $plainPassword;
+        return $this;
     }
 }
