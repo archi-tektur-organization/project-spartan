@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\DataFixtures;
+namespace App\Infrastructure\Doctrine\DataFixtures;
 
 use App\Infrastructure\Doctrine\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -13,7 +13,6 @@ class UserFixtures extends Fixture
         $account = new User();
         $account->setEmail('test@example.com');
         $account->setPassword('password');
-        $account->setRoles([]);
 
         $manager->persist($account);
         $manager->flush();
