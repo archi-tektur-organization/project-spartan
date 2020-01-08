@@ -29,7 +29,7 @@ class HashPasswordListener implements EventSubscriber
         $user = $eventArgs->getEntity();
 
         if (!$user instanceof User) {
-            return null;
+            return;
         }
 
         $encoded = $this->passwordEncoder->encodePassword(
