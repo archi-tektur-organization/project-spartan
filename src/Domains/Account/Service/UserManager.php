@@ -1,9 +1,8 @@
 <?php declare(strict_types=1);
 
-
 /**
- * AccountManager
+ * UserManager
  */
-class AccountManager
+class UserManager
 {
 }
