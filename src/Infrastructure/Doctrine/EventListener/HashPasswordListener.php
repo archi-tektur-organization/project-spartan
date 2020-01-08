@@ -1,42 +1,26 @@
 <?php declare(strict_types=1);
 
+namespace App\Infrastructure\Doctrine\EventListener;
+
 use App\Infrastructure\Doctrine\Entity\User;
-use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * HashPasswordListener
  */
-class HashPasswordListener implements EventSubscriber
+class HashPasswordListener
 {
-    /** @var UserPasswordEncoder */
-    private UserPasswordEncoder $passwordEncoder;
+    private UserPasswordEncoderInterface $passwordEncoder;
 
-    public function __construct(UserPasswordEncoder $passwordEncoder)
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    /** @inheritDoc */
-    public function getSubscribedEvents(): array
+    public function prePersist(User $user, LifecycleEventArgs $eventArgs): void
     {
-        return ['prePersist'];
-    }
-
-    public function prePersist(LifecycleEventArgs $eventArgs): void
-    {
-        $user = $eventArgs->getEntity();
-
-        if (!$user instanceof User) {
-            return;
-        }
-
-        $encoded = $this->passwordEncoder->encodePassword(
-            $user,
-            $user->getPlainPassword()
-        );
-
+        $encoded = $this->passwordEncoder->encodePassword($user, $user->getPlainPassword());
         $user->setPassword($encoded);
     }
 }

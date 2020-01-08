@@ -1,6 +1,6 @@
 security:
   encoders:
-    App\Entity\User:
+    App\Infrastructure\Doctrine\Entity\User:
       algorithm: auto
   providers:
     app_user_provider:

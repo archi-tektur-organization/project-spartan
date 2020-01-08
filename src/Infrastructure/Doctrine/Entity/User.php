@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
+ * @ORM\EntityListeners({"App\Infrastructure\Doctrine\EventListener\HashPasswordListener"})
  * @ORM\Entity(repositoryClass="App\Infrastructure\Doctrine\Repository\UserRepository")
  */
 class User implements UserInterface
@@ -28,13 +29,13 @@ class User implements UserInterface
     private array $roles = [];
 
     /** @var string|null The unhashed password */
-    private ?string $plainPassword;
+    private ?string $plainPassword = null;
 
     /**
      * @var null|string The hashed password
      * @ORM\Column(type="string")
      */
-    private ?string $password;
+    private ?string $password = null;
 
     public function getId(): ?int
     {
@@ -71,7 +72,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -90,7 +91,7 @@ class User implements UserInterface
         $this->password = null;
     }
 
-    public function getPlainPassword(): string
+    public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }

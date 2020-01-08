@@ -8,11 +8,11 @@ use Doctrine\Persistence\ObjectManager;
 
 class UserFixtures extends Fixture
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $account = new User();
         $account->setEmail('test@example.com');
-        $account->setPassword('password');
+        $account->setPlainPassword('password');
 
         $manager->persist($account);
         $manager->flush();

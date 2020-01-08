@@ -8,10 +8,12 @@ services:
     exclude:
       - '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
       - '../src/Infrastructure/Doctrine/Migrations'
-
+  App\Domains\Account\Controller\:
+    resource: '../src/Domains/Account/Controller'
+    tags: ['controller.service_arguments']
   App\Domains\Project\Controller\:
     resource: '../src/Domains/Project/Controller'
     tags: ['controller.service_arguments']
-
-imports:
-  - { resource: '../src/Domains/Account/Resource/config/services.yaml' }
+  App\Infrastructure\Doctrine\EventListener\HashPasswordListener:
+    tags:
+      - { name: doctrine.orm.entity_listener, lazy: true }
