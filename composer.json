@@ -1,4 +1,6 @@
 {
+  "name": "archi-tektur/project-spartan",
+  "description": "archi_tektur company project manager",
   "type": "project",
   "license": "proprietary",
   "require": {
