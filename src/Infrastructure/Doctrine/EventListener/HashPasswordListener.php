@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Doctrine\EventListener;
 
 use App\Infrastructure\Doctrine\Entity\User;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
@@ -18,9 +17,13 @@ class HashPasswordListener
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    public function prePersist(User $user, LifecycleEventArgs $eventArgs): void
+    /** @inheritDoc */
+    public function prePersist(User $user): void
     {
-        $encoded = $this->passwordEncoder->encodePassword($user, $user->getPlainPassword());
-        $user->setPassword($encoded);
+        if ($user->getPlainPassword() !== null) {
+            $encoded = $this->passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            $user->eraseCredentials();
+            $user->setPassword($encoded);
+        }
     }
 }
